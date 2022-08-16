@@ -1,4 +1,4 @@
-module github.com/xxxsen/qbapi
+module github.com/pen1120/qbapi
 
 go 1.15
 
