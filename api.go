@@ -459,7 +459,7 @@ func (q *QBAPI) ResumeTorrents(ctx context.Context, req *ResumeTorrentsReq) (*Re
 		return nil, NewError(ErrParams, fmt.Errorf("non hashes found"))
 	}
 	hashes := strings.Join(req.Hash, "|")
-	if err := q.getWithDecoder(ctx, apiResumeTorrents, &resumeTorrentsInnerReq{Hashes: hashes}, nil, JsonDec); err != nil {
+	if err := q.postWithDecoder(ctx, apiResumeTorrents, &resumeTorrentsInnerReq{Hashes: hashes}, nil, JsonDec); err != nil {
 		return nil, err
 	}
 	return &ResumeTorrentsRsp{}, nil
@@ -536,7 +536,7 @@ func (q *QBAPI) ReannounceTorrents(ctx context.Context, req *ReannounceTorrentsR
 	} else {
 		innerReq.Hashes = strings.Join(req.Hash, "|")
 	}
-	if err := q.getWithDecoder(ctx, apiReannounceTorrents, innerReq, nil, JsonDec); err != nil {
+	if err := q.postWithDecoder(ctx, apiReannounceTorrents, innerReq, nil, JsonDec); err != nil {
 		return nil, err
 	}
 	return &ReannounceTorrentsRsp{}, nil
