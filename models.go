@@ -176,7 +176,7 @@ type GetApplicationPreferencesRsp struct {
 	Lsd                                bool                   `json:"lsd"`                                   //True if LSD is enabled
 	Encryption                         int                    `json:"encryption"`                            //See list of possible values here below
 	AnonymousMode                      bool                   `json:"anonymous_mode"`                        //If true anonymous mode will be enabled; read more here; this option is only available in qBittorent built against libtorrent version 0.16.X and higher
-	ProxyType                          int                    `json:"proxy_type"`                            //See list of possible values here below
+	ProxyType                          string                 `json:"proxy_type"`                            //See list of possible values here below
 	ProxyIp                            string                 `json:"proxy_ip"`                              //Proxy IP address or domain name
 	ProxyPort                          int                    `json:"proxy_port"`                            //Proxy port
 	ProxyPeerConnections               bool                   `json:"proxy_peer_connections"`                //True if peer and web seed connections should be proxified; this option will have any effect only in qBittorent built against libtorrent version 0.16.X and higher
@@ -641,7 +641,7 @@ type GetTorrentTrackersReq struct {
 	Hash string `json:"hash"`
 }
 
-//Note: tier should be integer, but in some trackers, it returns empty string
+// Note: tier should be integer, but in some trackers, it returns empty string
 type TorrentTrackerItem struct {
 	Url           string      `json:"url"`            //Tracker url
 	Status        int         `json:"status"`         //Tracker status. See the table below for possible values
