@@ -7,6 +7,7 @@ type Config struct {
 	Password string
 	Host     string
 	Timeout  time.Duration
+	SSL      bool
 }
 
 type Option func(c *Config)
@@ -15,6 +16,12 @@ func WithAuth(user string, pwd string) Option {
 	return func(c *Config) {
 		c.Username = user
 		c.Password = pwd
+	}
+}
+
+func WithSSL() Option {
+	return func(c *Config) {
+		c.SSL = true
 	}
 }
 

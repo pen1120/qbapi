@@ -3,6 +3,7 @@ package qbapi
 import (
 	"bytes"
 	"context"
+	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -45,6 +46,7 @@ func NewAPI(opts ...Option) (*QBAPI, error) {
 		Jar:     jar,
 		Transport: &http.Transport{
 			DisableCompression: true,
+			TLSClientConfig:    &tls.Config{InsecureSkipVerify: c.SSL},
 		},
 	}
 	return &QBAPI{c: c, client: client}, nil
