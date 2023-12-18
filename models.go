@@ -67,6 +67,21 @@ type TorrentListItem struct {
 	Uploaded          int     `json:"uploaded"`
 	UploadedSession   int     `json:"uploaded_session"`
 	Upspeed           int     `json:"upspeed"`
+	Infohash_v1       string  `json:"infohash_v1"`
+	Infohash_v2       string  `json:"infohash_v2"`
+}
+
+func (i TorrentListItem) GetHash() string {
+	if i.Hash != "" {
+		return i.Hash
+	}
+	if i.Infohash_v1 != "" {
+		return i.Infohash_v1
+	}
+	if i.Infohash_v2 != "" {
+		return i.Infohash_v2
+	}
+	return "NONE"
 }
 
 type GetTorrentListRsp struct {
